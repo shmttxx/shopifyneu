@@ -1,0 +1,122 @@
+<div class="page-width">
+    <h2 style="text-align: center">{{section.settings.mein_erstes_textfeld}}</h2>
+      
+    <div class="fl-container">
+    {% for block in section.blocks %}  
+      <div class="fl-item">
+      <img src="{{block.settings.image | img_url: '2048x'}}" style="width: {{section.settings.image-size}}px;" alt="Trust-Image">
+      <p style="font-size:{{section.settings.font_size}}px; "class="fl-trust-text">{{block.settings.beschreibungstext}}</p>
+      </div>
+    {% endfor %}
+    </div>
+    </div>
+    
+    
+    {% schema %}
+    {
+        "name": "Erste eigene Section",
+        "max_blocks": 5,
+        "settings": [{
+          "type": "text",
+          "id": "mein_erstes_textfeld",
+          "label": "Überschrift",
+          "default": "Hey, ich bin dein erstes Textfeld"
+    },    
+          {
+      "type": "range",
+      "id": "font_size",
+      "min": 12,
+      "max": 48,
+      "step": 1,
+      "unit": "px",
+      "label": "Schriftgröße Beschreibung",
+      "default": 12
+    },{
+      "type": "range",
+      "id": "image-size",
+      "min": 48,
+      "max": 192,
+      "step": 16,
+      "unit": "px",
+      "label": "Breite des Bildes",
+      "default": 96
+    }],
+      "blocks": [
+         {
+           "name": "Bild-Text",
+           "type": "custom",
+           "settings": [
+             {
+               "type": "image_picker",
+               "id": "image",
+               "label": "Image"
+             },
+             {
+               "type": "text",
+               "id": "beschreibungstext",
+               "label": "Beschreibungstext",
+               "default": "Dies ist ein Beschreibungstext"
+             }
+           ]
+         }
+       ],
+        "presets": [
+          {
+            "name": "Erste eigene Section responsive",
+            "category": "Custom"
+          }
+        ]
+      }
+    {% endschema %}
+    
+
+<style>
+  .fl-container {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      align-items: top;
+    }
+    
+    .fl-item {
+      /*background-color: lightgrey;*/
+      width: 19%;
+    }
+    
+    .fl-item p, .fl-item img {
+      text-align: center;
+      margin: auto;
+      display: block;
+    }
+    
+    .fl-item p {
+      padding: 8px;
+      margin-top: 16px;
+      margin-bottom: 16px;
+    }
+    
+    .fl-item img {
+      margin-top: 32px;
+      width: 44px;
+    }
+    
+    @media only screen and (max-width: 600px) {
+      .fl-item {
+        background-color: white;
+        width: 49%;
+      }
+      .fl-item:first-child {
+        display: none;
+      }
+    }
+    
+    .none {
+      display: none;
+    }
+</style>
+
+{% stylesheet %}
+{% endstylesheet %}
+    
+{% javascript %}
+{% endjavascript %}
